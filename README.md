@@ -410,6 +410,7 @@ ufw allow 'Nginx Full'
 ```
 ```bash
 ufw status
+```
 ```bash
 systemctl status nginx
 ```
