@@ -1,7 +1,7 @@
 # <h1 align="center">NYM</h1>
 # <h1 align="center">SETTING UP NYM GATEWAY MODE</h1>
 
-# <h1 align="center">Official Tools Provided by the Nym Team</h1>
+Official Tools Provided by the Nym Team
 
 * [Operators Guide: Running an Exit Gateway](https://nym.com/docs/operators/community-counsel/exit-gateway)
 * [Operators Guide: Jurisdiction legal advices](https://nym.com/docs/operators/community-counsel/jurisdictions)
