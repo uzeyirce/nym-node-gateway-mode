@@ -6,26 +6,26 @@
 * [Website](https://nymtech.net/)
 * [Docs](https://nymtech.net/operators/nodes/nym-node.html)
 
-* First, we’ll be getting a server with 4 CPUs and 8/16 GB RAM. The most important thing to check when selecting a server is whether it supports IPv6. Some providers include IPv6 by default, while others do not.
-* For example, if you're purchasing a server from [https://pq.hosting](https://pq.hosting/?from=651056), you'll need to add IPv6 as an extra feature. This option appears when you're purchasing the server; just click “Add IPv6.” If you choose PQ Hosting, select the Palladium option with the 4/8 server configuration. You may find cheaper 4/8 servers at other providers. 
-* When selecting the operating system, you can choose either Ubuntu 22.04 or 24.04. 24.04 is bettet. The provider will suggest options during the server purchase, and you should select Ubuntu.
-For location, you can choose from Hong Kong, Japan, Spain, Iceland, Italy, the UK, or Belgium.
+* First, get a server with 4 CPUs and 8/16 GB of RAM. The most critical factor to consider when selecting a server is whether it supports IPv6. Some providers include IPv6 by default, while others do not.
+* For instance, when purchasing a server from [https://pq.hosting](https://pq.hosting/?from=651056), it is necessary to add IPv6 as an additional feature. This option will be available during the server selection process—simply click “Add IPv6.” If opting for PQ Hosting, choose the Palladium plan with the 4/8 server configuration. However, more cost-effective 4/8 servers may be available through other providers. 
+* When selecting the operating system, either Ubuntu 22.04 or 24.04 can be chosen, with 24.04 being the preferred option. The provider will present operating system options during the server purchase process, and Ubuntu should be selected.
+For the server location, options include Hong Kong, Japan, Spain, Iceland, Italy, the United Kingdom, Belgium, etc.
 * After purchasing the server, you will need to buy a domain. You can do so at https://njal.la/domains/. Once you've bought your domain, you’ll need to set up your hostname. Here’s how to do that:
-* Go to “My Domains” where you purchased the domain.
+* Navigate to the “My Domains” section on the platform where the domain was purchased
 Click “Manage.”
-*Once inside, you’ll see the option to “Add Record.” Click on it.
-*Choose the record type as “A.”
-*For the name, enter a label for your node, like "gatewayturkey."
-*For the IP address, use the IP address of the server you just bought, then save it.
-*Your hostname will then be something like “gatewayturkey.yourdomain.com.” For example, my domain is “nymgateway” and I chose "pulse1" as the name. My hostname is “pulse1.nymgateway.”
-*Once your hostname is set up, check it at https://www.whatsmydns.net. If it shows green, everything is set.
-*Now, you can proceed with setting up your Nym node in exit and entry gateway mode.
-*To enter commands, open the "Terminal" application. On a Mac, it's called Terminal. I'm not sure what it's called on Windows, but it should be a similar program like Command Prompt or PowerShell.
+* Locate the option to “Add Record” and select it.
+* Set the record type to “A.”
+* For the name, specify a label for your node, such as "gatewayturkey."
+* Enter the IP address of the server you purchased and save the record.
+* Your hostname will then be formatted as “gatewayturkey.yourdomain.com.” For instance, if your domain is “nymgateway” and you choose "pulse1" as the name, your hostname will be “pulse1.nymgateway.”
+* Once the hostname is configured, verify it using https://www.whatsmydns.net. If the results appear green, the setup is complete.
+* You can then proceed with configuring your Nym node in both exit and entry gateway modes.
+* To execute commands, open a terminal application. On macOS, this application is called Terminal, while on Windows, it is typically referred to as Command Prompt or PowerShell.
 
-*To log in to the terminal, use the following command with your server's IP and password
+* To log in to the terminal, execute the following command using your server's IP address and password:
 ``` ssh root@YOUR_IP ```
 
-*Then, enter your password when prompted.
+* Then, enter your password when prompted to complete the login process.
 
 Let’s begin!
 ```bash
@@ -66,7 +66,7 @@ mkdir ~/.nym
 ```bash
 mkdir ~/.nym/nym-nodes
 ```
-/////////////////////////// The code below is a single command.
+/////////////////////////// The following code represents a single command.
 ```bash
 mkdir $HOME/nym-binaries; \
 curl -L https://raw.githubusercontent.com/nymtech/nym/refs/heads/develop/scripts/network_tunnel_manager.sh -o $HOME/nym-binaries/network_tunnel_manager.sh && \
@@ -83,7 +83,7 @@ $HOME/nym-binaries/network_tunnel_manager.sh configure_dns_and_icmp_wg ; \
 $HOME/nym-binaries/network_tunnel_manager.sh adjust_ip_forwarding ; \
 $HOME/nym-binaries/network_tunnel_manager.sh check_ipv6_ipv4_forwarding
 ```
-The code below is the latest release at the moment.
+The code provided below is the latest release available at this time.
 ```bash
 wget https://github.com/nymtech/nym/releases/download/nym-binaries-v2025.1-reeses/nym-node
 ```
@@ -91,7 +91,7 @@ wget https://github.com/nymtech/nym/releases/download/nym-binaries-v2025.1-reese
 chmod +x nym-node
 ```
 
-Set your Node ID (it can be anything you like, for example, alexnym) and enter it in the relevant field below. In the Hostname section, enter the hostname you obtained under your domain name.
+Set your Node ID (which can be any identifier you prefer, such as "alexnym") and enter it in the corresponding field below. In the Hostname section, input the hostname you configured under your domain name.
 ```bash
 ./nym-node run --id YOURNODEID --init-only --mode entry-gateway --public-ips "$(curl -4 https://ifconfig.me)" --hostname "YOURHOSTNAME" --http-bind-address 0.0.0.0:8080 --mixnet-bind-address 0.0.0.0:1789 --accept-operator-terms-and-conditions --wireguard-enabled true
 ```
@@ -104,7 +104,7 @@ sudo apt install nano
 ```bash
 nano /etc/systemd/system/nym-node.service
 ```
-After entering the code above, a page will open. Copy and paste the following into the page, and don't forget to add your Node ID:
+After entering the code above, a page will open. Copy and paste the following into the page, ensuring to include your Node ID:
 ```bash
 [Unit]
 Description=Nym Node
@@ -122,12 +122,12 @@ RestartSec=30
 [Install]
 WantedBy=multi-user.target
 ```
-* To save it, press CTRL + X, then Y, and hit ENTER.
-* Let’s assign a name to our node.
+* To save the file, press CTRL + X, then Y, and hit ENTER.
+* Next, assign a description for your node.
 ```bash
 nano ~/.nym/nym-nodes/NODEID/data/description.toml
 ```
-* After entering the code above, a page will open. Fill it in with any name you prefer. Once you finish
+* After entering the code above, a page will open. Fill it in with any name you prefer. Once finished,
 * Press CTRL + O and then ENTER to save the file.
 * Press CTRL + X to exit the editor.
 
@@ -141,26 +141,26 @@ systemctl daemon-reload
 service nym-node start && journalctl -u nym-node -f -n 100
 ```
 * Bonding process.
-* To learn your Identity Key, enter the following command:
+* To retrieve your Identity Key, enter the following command:
 * ./nym-node bonding-information --id NODEID
 * Follow the steps below to complete the bonding process:
-* Create a wallet and make sure to save the mnemonics.
-* Transfer min 101 NYM to your wallet.
-* Fill in the settings correctly:
-•	Start the bonding process on your wallet
-•	Type your identity key 
-•	Operational Cost (op cost): 800
-•	Profit Margin (pm): 20
+* Create a wallet and ensure you save the mnemonics.
+* Transfer at least 101 NYM to your wallet.
+* Complete the settings as follows:
+•	Start the bonding process within your wallet.
+•	Enter your identity key.
+•	Set the Operational Cost
+•	Set the Profit Margin 
 •	Enable Advanced Settings:
 •	Port: 8080
-•	Host: Add your hostname here.
+•	Host: Enter your hostname.
 
 
-* When you click "Next," a long command/code will be provided.
-* Copy that command and paste it into the terminal on your server as follows:
+* Upon clicking "Next," a lengthy command/code will be provided.
+* Copy the command and paste it into the terminal on your server as follows:
 * ./nym-node sign --id NODEID --contract-msg ……………………………….
-* Paste the code from the terminal into your wallet to complete the bonding process.
-* Go back to the terminal.
+* Paste the code from the terminal into your wallet to finalize the bonding process.
+* Return to the terminal.
 
   
 
@@ -173,7 +173,7 @@ mkdir -p /var/www/YOURHOSTNAME
 ```bash
 nano /var/www/YOURHOSTNAME/index.html
 ```
-Copy and paste the following text into the extracted page, but don't forget to replace the colored (MAILADRESI) part with your own contact information:
+Copy and paste the following text into the extracted page, ensuring to replace the highlighted (EMAILADDRESS) part with your own contact information:
 ```bash
 <!DOCTYPE html>
 <html lang="en-US">
@@ -373,7 +373,7 @@ which are two established safeguards.
 
 <p>
 That being said, if you still have a complaint about the router, you may email the
- <a href="mailto:>MAILADRESI>">maintainer</a>. If complaints are related
+ <a href="mailto:>EMAILADDRESS>">maintainer</a>. If complaints are related
  to a particular service that is being abused, the maintainer will submit that to the
  NYM Operators Community in order to add it to the Exit Policy cited above.
 If approved, that would prevent this router from allowing that traffic to exit through it.
@@ -389,15 +389,15 @@ specified IP:port combination. Please be considerate when using these options.</
 </body>
 </html>
 ```
-To save it, press CTRL + X, then Y, and hit ENTER.
+To save the file, press CTRL + X, then Y, and hit ENTER.
 ```bash
 nano ~/.nym/nym-nodes/NODEID/config/config.toml
 ```
-In the config file, find the "landing" section and paste the following text:
+In the config file, locate the "landing" section and paste the following text:
 ```bash
 '/var/www/YOURHOSTNAME'
 ```
-In the config file, find the following section, which is set to false by default, and change it to true:
+In the config file, locate the following section, which is set to false by default, and change it to true:
 ```bash
 # Specifies whether this node can operate in an exit mode.
 exit = true
@@ -422,7 +422,7 @@ systemctl restart nginx
 ```bash
 nano /etc/nginx/sites-available/YOURHOSTNAME
 ```
-Copy and paste the following text into the opened page. Don't forget to include your hostname.
+Copy and paste the following text into the opened page, ensuring to include your hostname.
 ```bash
 server {
     listen 80;
@@ -439,14 +439,14 @@ server {
     }
 }
 ```
-To save it, press CTRL + X, then Y, and hit ENTER.
+To save the file, press CTRL + X, then Y, and hit ENTER.
 ```bash
 ln -s /etc/nginx/sites-available/YOURHOSTNAME /etc/nginx/sites-enabled
 ```
 ```bash
 nginx -t
 ```
-The result of this command should show 'successful' or 'ok'.
+The result of this command should display 'successful' or 'ok'.
 ```bash
 systemctl restart nginx
 ```
@@ -456,7 +456,7 @@ apt install certbot python3-certbot-nginx
 ```bash
 nano /etc/nginx/sites-available/wss-config-nym
 ```
-Copy and paste the following text into the opened page. Don’t forget to include your hostname.
+Copy and paste the following text into the opened page, ensuring to include your hostname.
 ```bash
 server {
     listen 9001 ssl http2;
@@ -496,20 +496,20 @@ server {
     }
 }
 ```
-To save it, press CTRL + X, then Y, and hit ENTER.
+To save the file, press CTRL + X, then Y, and hit ENTER.
 ```bash
 ln -s /etc/nginx/sites-available/wss-config-nym /etc/nginx/sites-enabled
 ```
 ```bash
 nginx -t
 ```
-The result of this command should show 'successful' or 'ok'.
+The result of this command should display 'successful' or 'ok'.
 ```bash
 nano ~/.nym/nym-nodes/NODEID/config/config.toml
 ```
-Change the following port, which is set to default 0, to 9001.
+Change the following port, which is set to the default value of 0, to 9001.
 * announce_wss_port = 9001
-* To save it, press CTRL + X, then Y, and hit ENTER.
+* To save the file, press CTRL + X, then Y, and hit ENTER.
 ```bash
  systemctl enable nym-node.service
 ```
@@ -519,9 +519,9 @@ systemctl daemon-reload
 ```bash
 service nym-node start && journalctl -u nym-node -f -n 100
 ```
-* If the packaging process is complete, there is no issue.
-* CTRL + C
-* important note: CTRL + C is used to stop or interrupt a running command or process in the terminal.
+* If the packaging process has started, there are no issues.
+* Press CTRL + C.
+* Important note: CTRL + C is used to stop or interrupt a running command or process in the terminal.
 
 ```bash
 sudo apt install node-ws
@@ -529,8 +529,8 @@ sudo apt install node-ws
 ```bash
 wscat -c wss://YOURHOSTNAME:9001
 ```
-* If it shows green, You are fine
-* Let's check both of these commands to ensure they don't give any errors:
+* If it shows green, you are good to go.
+* Let's check both of these commands to ensure they don't produce any errors:
 
 ```bash
 $HOME/nym-binaries/network_tunnel_manager.sh joke_through_the_mixnet
@@ -542,11 +542,11 @@ For log check:
 ```bash
 journalctl -u nym-node -f -n 100
 ```
-For status check:
+For a status check:
 ```bash
 service nym-node status
 ```
-Here, you can check whether your node is active. Press CTRL + F and paste your Identity to search for it.
+Here, you can check if your node is active. Press CTRL + F and paste your Identity to search for it.
 ```bash
 https://validator.nymtech.net/api/v1/nym-nodes/described 
 ```
