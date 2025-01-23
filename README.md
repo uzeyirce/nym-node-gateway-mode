@@ -7,7 +7,7 @@
 * [Docs](https://nymtech.net/operators/nodes/nym-node.html)
 
 * First, we’ll be getting a server with 4 CPUs and 8/16 GB RAM. The most important thing to check when selecting a server is whether it supports IPv6. Some providers include IPv6 by default, while others do not.
-* For example, if you're purchasing a server from [https://pq.hosting](https://pq.hosting/?from=651056), you'll need to add IPv6 as an extra feature. This option appears when you're purchasing the server; just click “Add IPv6.” If you choose PQ Hosting, select the Palladium option with the 4/8 server configuration. You may find cheaper 4/8 servers at Hetzner, but running an exit gateway there can be challenging. Be cautious to avoid having your account banned. I received a warning but wasn’t banned and ended up shutting down the server. However, the risk is entirely yours.
+* For example, if you're purchasing a server from [https://pq.hosting](https://pq.hosting/?from=651056), you'll need to add IPv6 as an extra feature. This option appears when you're purchasing the server; just click “Add IPv6.” If you choose PQ Hosting, select the Palladium option with the 4/8 server configuration. You may find cheaper 4/8 servers at other providers. 
 * When selecting the operating system, you can choose either Ubuntu 22.04 or 24.04. 24.04 is bettet. The provider will suggest options during the server purchase, and you should select Ubuntu.
 For location, you can choose from Hong Kong, Japan, Spain, Iceland, Italy, the UK, or Belgium.
 * After purchasing the server, you will need to buy a domain. You can do so at https://njal.la/domains/. Once you've bought your domain, you’ll need to set up your hostname. Here’s how to do that:
