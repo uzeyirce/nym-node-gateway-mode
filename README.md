@@ -66,7 +66,7 @@ mkdir ~/.nym
 ```bash
 mkdir ~/.nym/nym-nodes
 ```
-/////////////////////////// The following code represents a single command.
+The following code represents a single command.
 ```bash
 mkdir $HOME/nym-binaries; \
 curl -L https://raw.githubusercontent.com/nymtech/nym/refs/heads/develop/scripts/network_tunnel_manager.sh -o $HOME/nym-binaries/network_tunnel_manager.sh && \
